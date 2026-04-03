@@ -58,6 +58,31 @@ django-change-me-project/
     __init__.py                 # Empty, ready for new Django apps
 ```
 
+## Connecting to Angular Frontend
+
+CORS is pre-configured to accept requests from the Angular dev server. Set your frontend URLs in `.env`:
+
+```bash
+CORS_ALLOWED_ORIGINS=http://localhost:4200,http://127.0.0.1:4200
+```
+
+In production, update to your actual frontend domain. The Angular base template (`angular-change-me-project`) is designed to connect to this API via the `createEnv()` factory.
+
+## Environment Variables
+
+Copy `.env.example` to `.env` before running. Required variables:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `SECRET_KEY` | auto-generated (dev) | Django secret key — **must set in production** |
+| `DEBUG` | `True` | Debug mode — set `False` in production |
+| `ALLOWED_HOSTS` | `localhost,127.0.0.1` | Comma-separated allowed hosts |
+| `DATABASE_URL` | SQLite (dev) | PostgreSQL connection string for production |
+| `CORS_ALLOWED_ORIGINS` | — | Comma-separated frontend URLs |
+| `CSRF_TRUSTED_ORIGINS` | — | Comma-separated trusted origins |
+| `SENTRY_DSN` | — | Sentry DSN for error tracking (production) |
+| `SECURE_SSL_REDIRECT` | `False` | Set `True` when behind HTTPS |
+
 ## Key Architecture Decisions
 
 - **`config/` not `project_name/`** — Settings directory never needs renaming when cloning the template
@@ -151,6 +176,18 @@ The `production.py` settings include:
 - Sentry integration (commented, ready to enable)
 
 Run `make check-deploy` to validate production settings.
+
+## Rename Script
+
+`rename-project.sh` replaces the placeholder name across the entire project in three formats:
+
+| Format | Before | After (example) |
+|--------|--------|-----------------|
+| kebab-case | `change-me-project` | `my-cool-api` |
+| snake_case | `change_me_project` | `my_cool_api` |
+| PascalCase | `ChangeMeProject` | `MyCoolApi` |
+
+Excludes `.git/`, `venv/`, and `__pycache__/`.
 
 ## Branch Strategy (Future)
 
