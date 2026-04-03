@@ -4,6 +4,17 @@ Scalable Django base template for creating new backend projects instantly. Clone
 
 **Stack**: Django 6.0 | DRF 3.17 | PostgreSQL | Docker | Uvicorn
 
+## Documentation
+
+| Guide | Description |
+|-------|-------------|
+| [Application Flows](docs/application-flows.md) | Request lifecycle, settings flow, Docker flow, frontend connection |
+| [User Flows](docs/user-flows.md) | Developer workflows: setup, add apps, add auth, add Celery, deploy |
+| [Coding Patterns](docs/coding-patterns.md) | Model, serializer, viewset, URL, permission, and testing conventions |
+| [Common Utilities](docs/common-utilities.md) | Built-in functions, DRF config, Django ORM patterns, ready-to-copy starters |
+| [Libraries](docs/libraries.md) | Every dependency explained with version, purpose, and usage |
+| [TODO](TODO.md) | Planned improvements, branch presets, and tracked work |
+
 ## Quick Start
 
 ```bash
